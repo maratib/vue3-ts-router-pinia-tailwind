@@ -1,16 +1,27 @@
-<script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
-import AppLayout from "./layouts/AppLayout.vue";
-</script>
-
 <template>
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-  <p>
-    <router-link to="/" class="mr-50">Home</router-link>
-    <router-link to="/about">About</router-link>
-  </p>
-
-  <AppLayout>
-    <router-view />
-  </AppLayout>
+  <div id="app">
+    <component :is="layout">
+      <router-view />
+    </component>
+  </div>
 </template>
+
+<script>
+const default_layout = "default";
+
+export default {
+  computed: {
+    layout() {
+      return (this.$route.meta.layout || default_layout) + "-layout";
+    },
+  },
+  created() {
+    // nothing defined here (when this.$route.path is other than "/")
+    console.log("Created: ", this.$route, this.$route.meta.layout);
+  },
+  updated() {
+    // something defined here whatever the this.$route.path
+    console.log("Updated: ", this.$route, this.$route.meta.layout);
+  },
+};
+</script>

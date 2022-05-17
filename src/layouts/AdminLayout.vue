@@ -5,7 +5,7 @@ import NavBar from "@/components/NavBar.vue";
 <template>
   <div>
     <NavBar />
-    <h1>App Layout</h1>
+    <h1>Admin Layout</h1>
     <slot />
   </div>
 </template>

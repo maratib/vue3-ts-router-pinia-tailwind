@@ -20,7 +20,14 @@ const routes: RoutesType[] = [
     path: "/about",
     component: () => import("@/views/About.vue"),
     meta: {
-      layout: "AppLayout",
+      layout: "app",
+    },
+  },
+  {
+    path: "/admin/",
+    component: () => import("@/views/admin/Dashboard.vue"),
+    meta: {
+      layout: "admin",
     },
   },
 ];
