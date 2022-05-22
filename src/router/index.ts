@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 
 interface RoutesType {
   path: string;
+  name: string;
   component: () => {};
   meta?: {
     index?: number;
@@ -14,10 +15,12 @@ interface RoutesType {
 const routes: RoutesType[] = [
   {
     path: "/",
+    name: "Home",
     component: () => import("@/views/Home.vue"),
   },
   {
     path: "/about",
+    name: "About",
     component: () => import("@/views/About.vue"),
     meta: {
       layout: "app",
@@ -25,10 +28,16 @@ const routes: RoutesType[] = [
   },
   {
     path: "/admin/",
+    name: "Dashboard",
     component: () => import("@/views/admin/Dashboard.vue"),
     meta: {
       layout: "admin",
     },
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: () => import("@/views/NotFound.vue"),
   },
 ];
 

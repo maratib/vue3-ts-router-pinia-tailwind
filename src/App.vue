@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+
+const default_layout = "default";
+
+const layout = computed(
+  () => (useRoute().meta.layout || default_layout) + "-layout"
+);
+</script>
+
 <template>
   <div id="app">
     <component :is="layout">
@@ -5,23 +16,3 @@
     </component>
   </div>
 </template>
-
-<script>
-const default_layout = "default";
-
-export default {
-  computed: {
-    layout() {
-      return (this.$route.meta.layout || default_layout) + "-layout";
-    },
-  },
-  created() {
-    // nothing defined here (when this.$route.path is other than "/")
-    console.log("Created: ", this.$route, this.$route.meta.layout);
-  },
-  updated() {
-    // something defined here whatever the this.$route.path
-    console.log("Updated: ", this.$route, this.$route.meta.layout);
-  },
-};
-</script>
